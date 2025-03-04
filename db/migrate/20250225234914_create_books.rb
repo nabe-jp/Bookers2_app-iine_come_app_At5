@@ -7,7 +7,7 @@ class CreateBooks < ActiveRecord::Migration[6.1]
 
       ## 感想
       t.text :body
-              
+      
       ## ユーザーID
       t.integer :user_id
 
