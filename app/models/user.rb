@@ -8,6 +8,10 @@ class User < ApplicationRecord
 
    has_one_attached :profile_image
 
+   validates :name, uniqueness: true    # 一意性
+   validates :name, length: { in: 2..6 }    # 2～20文字
+  #  validates :introduction, length: { maximum: 50 }   # 最大50文字
+
    def get_profile_image(width, height)
     unless profile_image.attached?
       file_path = Rails.root.join('app/assets/images/sample-author1.jpg')

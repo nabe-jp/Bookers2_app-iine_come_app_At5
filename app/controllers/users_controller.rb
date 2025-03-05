@@ -1,7 +1,10 @@
 class UsersController < ApplicationController
+  # アクセスを制限を始めに実行
+  before_action :is_matching_login_user, only: [:edit, :update]
+
   def show
     @user = User.find(params[:id])
-    @books = @user.book
+    @books = @user.book.page(params[:page])
   end
 
   def edit
@@ -11,12 +14,20 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     @user.update(user_params)
-    redirect_to user_path
+    redirect_to user_path(@user.id)
   end
   
   private
 
   def user_params
-    params.require(:user).permit(:name, :profile_image)
+    params.require(:user).permit(:name, :introduction, :profile_image)
   end
+
+    # アクセスを制限
+    def is_matching_login_user
+      user = User.find(params[:id])
+      unless user.id == current_user.id
+        redirect_to post_images_path
+      end
+    end
 end
