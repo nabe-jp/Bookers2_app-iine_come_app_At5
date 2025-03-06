@@ -1,4 +1,7 @@
 <h1>Users#edit</h1>
+
+<%= render 'books/message', book: @user %>
+
 <h2>プロフィール編集</h2>
 <%= form_with model: @user do |f| %>
   <label for="inputName">Name</label>

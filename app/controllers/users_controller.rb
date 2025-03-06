@@ -18,9 +18,14 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    @user.update(user_params)
-    redirect_to user_path(@user.id)
+    if @user.update(user_params)
+      redirect_to user_path(@user.id)
+    else
+      flash.now[:alert] = "・Name can't be blank"
+      render :edit
+    end
   end
+
   
   private
 

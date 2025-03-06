@@ -1,0 +1,8 @@
+<% if flash[:alert] %>
+  <div>
+    <%= book.errors.count %> errors prohibited this obj from being saved:
+  </div>
+  <% flash.each do |message_type, message| %>
+    <div><%= sanitize alert, tags: %w(br) %></div>
+  <% end %>
+<% end %>
