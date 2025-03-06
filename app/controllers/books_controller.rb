@@ -1,7 +1,4 @@
 class BooksController < ApplicationController
-  def new
-    @book = Book.new
-  end
 
   def create
     @book = Book.new(book_params)
@@ -9,16 +6,39 @@ class BooksController < ApplicationController
     if @book.save
       redirect_to books_path
     else
-      render :new
+      # @user = User.new
+      render "users/show"
     end
-  end
-
-  def index
-    @books = Book.page(params[:page])
   end
 
   def show
     @book = Book.find(params[:id])
+  end
+  
+  def index
+    @books = Book.page(params[:page])
+  end
+
+  def edit
+    @book = Book.find(params[:id])
+  end
+
+  def update
+    @book = Book.find(params[:id])
+    if @book.update(book_params)
+      redirect_to book_path(@book.id)
+    else
+      if @book.title.empty? && @book.body.empty?
+        flash.now[:alert] = "・Title can't be blank<br>・Body can't be blank"
+      else
+        if @book.title.empty?
+          flash.now[:alert] = "・Title can't be blank"
+        else
+          flash.now[:alert] = "・Body can't be blank"
+        end
+      end
+      render :edit
+    end
   end
 
   def destroy
@@ -30,7 +50,7 @@ class BooksController < ApplicationController
   private
 
   def book_params
-    params.require(:book).permit(:title, :image, :body)
+    params.require(:book).permit(:title, :body)
   end
 
 end

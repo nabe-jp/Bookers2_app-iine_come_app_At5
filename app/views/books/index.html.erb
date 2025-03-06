@@ -1,14 +1,14 @@
 <h1>Books#index</h1>
 <% @books.each do |book| %>
   <div>
-    <%= link_to book_path(book.id) do %>
-      <%= image_tag book.get_image %>
+    <%= link_to user_path(book.user_id) do %>
+      <p>投稿ユーザー画像：<%= image_tag book.user.get_profile_image(100,100) %></p>
+      <p>本のタイトル：<%= book.title %></p>
     <% end %>
-    <p>投稿ユーザー画像：<%= image_tag book.user.get_profile_image(100,100) %></p>
-    <p>本のタイトル：<%= book.title %></p>
     <p>感想：<%= book.body %></p>
     <p>ユーザーネーム：<%= book.user.name %></p>
   </div>
 <% end %>
 
 <!--kaminari用-->
+<%= paginate @books %>
