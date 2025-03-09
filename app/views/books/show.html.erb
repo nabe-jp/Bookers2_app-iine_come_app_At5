@@ -15,10 +15,12 @@
       </thead>
       <tbody>
         <tr>
-          <td><%= link_to user_path(@book_show.user.id) do %>
+          <td><%= link_to user_path(@book_show.id) do %>
             <%= image_tag 'no_image.jpg' %>
           <% end %>
-          <td><p><%= @book_show.title %></p>
+          <td><%= link_to book_path(@book_show.id) do %>
+             <%= @book_show.title %>
+          <% end %>
           <td><p><%= @book_show.body %></p>
           <td><% if @book_show.user_id == current_user.id %>
             <a class="btn bg-info text-white"
@@ -30,5 +32,8 @@
         <% end %><td>
       </tr>
     </table>
+    <td><%= link_to user_path(@book_show.user) do %>
+      <%= @book_show.user.name %>
+    <% end %>
   </div>
 </div>

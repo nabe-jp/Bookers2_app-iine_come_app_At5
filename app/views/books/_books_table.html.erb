@@ -13,8 +13,9 @@
   <% @books.each do |book| %>
     <tr>
       <td><a><%= image_tag 'no_image.jpg' %></a> 
-      <td><%= link_to book_path(book.user_id) do %>
+      <td><%= link_to book_path(book) do %>
         <%= book.title %>
+        <%= book.user_id %>
       <% end %>
       <td><p><%= book.body %></p>
     </tr>
