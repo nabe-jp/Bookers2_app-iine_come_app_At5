@@ -1,0 +1,19 @@
+<!-- 新規投稿作成 -->
+<h3>New book</h3>
+
+<!-- エラーメッセージ -->
+<%= render 'layouts/message', resece: @book %>
+
+<%= form_with model:book,local:true do |f| %>
+  <div class="form-group">
+    <%= f.label :title %>
+    <%= f.text_field :title, class: 'form-control book_title' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :opinion %>
+    <%= f.text_area :body, class: 'form-control book_body' %>
+  </div>
+  <div class="form-group">
+    <%= f.submit class: 'btn btn-success' %>
+  </div>
+<% end %>

@@ -1,45 +1,20 @@
 <div class="container"> 
   <div class="row"> 
-    <div class="col-lg-4">
-      <h3>User info</h3>
-      <!-- ユーザーの詳細 -->
-      <%= image_tag @user.get_profile_image(100,100) %>
-      <h5>name  <%= @user.name %></h5>
-      <h5>introduction  <%= @user.introduction %></h5>
-      <% if @user == current_user %>
-        <a class="btn btn-outline-secondary"  style= "width: 50%;"<%= link_to edit_user_path(@user) do %>
-          <i class="fa-solid fa-user-gear"></i></a>
-        <% end %>
-      <% end %>
-
-      <!-- 新規投稿作成 -->
-      <h3>New book</h3>
-
-      <%= render 'layouts/message', resece: @book %>
-
-      <%= form_with model: @book do |f| %>
-        <h5>Title</h5>
-        <%= f.text_field :title %>
-        <h5>Opinion</h5>
-        <%= f.text_area :body %>
-        <div>
-          <%= f.submit 'Create Book', class: "btn bg-success text-white" %>
-        </div>
-      <% end %>
+    <div class="col-md-3">
+      <%= render 'user_info', user: @user %>
+      <%= render 'user_edit', book: @book %>
     </div>
-
     <!-- ユーザー一覧 -->
-    <div class="col-lg-8">
-      <h3>Usersユーザー一覧</h3>
+    <div class="col-md-8  offset-md-1">
+      <h3>Users</h3>
       <table class="table table-striped">
       <thead>
         <tr>
-          <th>image</th>
-          <th>name</th>
-          <th colspan="1"></th>
+          <th style="width: 20%">image</th>
+          <th style="width: 60%">name</th>
+          <th style="width: 20%" colspan="1"></th>
         </tr>
       </thead>
-
       <tbody>
         <% @users.each do |user| %>
           <tr>
@@ -51,9 +26,9 @@
           </tr>
         <% end %>
       </table>
+
+      <!--kaminari用-->
+      <%= paginate @books %>
     </div>
   </div>
 </div>
-
-<!--kaminari用-->
-<%= paginate @users %>
