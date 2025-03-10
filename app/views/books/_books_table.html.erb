@@ -10,14 +10,22 @@
   </thead>
 
   <tbody>
-  <% @books.each do |book| %>
-    <tr>
-      <td><a><%= image_tag 'no_image.jpg' %></a> 
-      <td><%= link_to book_path(book) do %>
-        <%= book.title %>
-        <%= book.user_id %>
-      <% end %>
-      <td><p><%= book.body %></p>
-    </tr>
-  <% end %>
+    <% @books.each do |book| %>
+      <tr>
+        <td>
+          <%= link_to user_path(book.user) do %>
+            <%= image_tag book.user.get_profile_image(100,100) %>
+          <% end %>
+        </td>
+        <td>
+          <%= link_to book_path(book) do %>
+            <%= book.title %>
+          <% end %>
+        </td>
+        <td>
+          <p><%= book.body %></p>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
 </table>
