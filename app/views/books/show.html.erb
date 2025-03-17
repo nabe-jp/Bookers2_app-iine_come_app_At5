@@ -6,43 +6,7 @@
     </div>
     <!-- 本の詳細 -->
     <div class="col-md-8  offset-md-1">
-    <h3>Book detail</h3>
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <th colspan="5"></th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>
-            <%= link_to user_path(@book_show.id) do %>
-              <%= image_tag @book_show.user.get_profile_image(100,100) %>
-            <% end %>
-          </td>
-          <td>
-            <%= link_to book_path(@book_show.id) do %>
-              <%= @book_show.title %>
-            <% end %>
-          </td>
-          <td>
-            <p><%= @book_show.body %></p>
-          </td>
-          <td>
-            <% if @book_show.user_id == current_user.id %>
-                <%= link_to edit_book_path(@book_show), class: "btn bg-info text-white" do %>Edit
-              <% end %>
-                <%= link_to book_path(@book_show), class: "btn bg-info text-white", method: :delete, data:{confirm: "Are you sure?"} do %>Destroy
-              <% end %>
-            <% end %>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-    <td>
-      <%= link_to user_path(@book_show.user) do %>
-        <%= @book_show.user.name %>
-      <% end %>
-    </td>
+      <%= render 'books_detail_table', book_show: @book_show, book: @book, book_comment: @book_comment %>
+    </div>
   </div>
 </div>
