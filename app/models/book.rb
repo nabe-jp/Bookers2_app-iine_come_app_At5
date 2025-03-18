@@ -8,6 +8,6 @@ class Book < ApplicationRecord
 
   # いいね機能、idがFavoritesテーブル内に存在するかを調べる、存在すればtrue
   def favorited_by?(user)
-    # favorites.exists?(user_id: user.id)
+    favorites.exists?(user_id: user.id)
   end
 end

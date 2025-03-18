@@ -27,27 +27,36 @@
         </td>
         <td>
           <!-- 自分の投稿にはいいねボタンを表示しない -->
-          <% if book.user.id =! current_user.id %>
+          <% if book.user.id != current_user.id %>
 
             <!-- ログインしてるユーザーがいいねを押しているか判定 -->
             <% if book.favorited_by?(current_user) %>
             <!-- いいねを押している -->
               <p>
                 <%= link_to book_favorite_path(book), method: :delete do %>
-                  <i class="fa-solid fa-heart"></i>
+                  <i class="fa-solid fa-heart", style="color:red"></i>
                   <%= book.favorites.count %> 
                 <% end %>
               </p>
 
             <!-- いいねを押していない -->
             <% else %>
-              <p>
-                <%= link_to book_favorite_path(book), method: :post do %>
-                  <i class="fa-solid fa-heart", style="color:red"></i>
-                  #####
-                  <%#= book.favorites.count %>
-                <% end %>
-              </p>
+              <!-- すでに押されている場合は色を変える -->
+              <% if book.favorites.count > 0 %>
+                <p>
+                  <%= link_to book_favorite_path(book), method: :post do %>
+                    <i class="fa-solid fa-heart" style="color:red"></i>
+                    <%= book.favorites.count %>
+                  <% end %>
+                </p>
+              <% else %>
+                <p>
+                  <%= link_to book_favorite_path(book), method: :post do %>
+                    <i class="fa-solid fa-heart"></i>
+                    <%= book.favorites.count %>
+                  <% end %>
+                </p>
+              <% end %>
             <% end %>
           <% end %>
         </tb>

@@ -4,7 +4,7 @@ class CreateFavorites < ActiveRecord::Migration[6.1]
 
       t.integer :user_id
 
-      t.integer :book_image_id
+      t.integer :book_id
 
       t.timestamps
     end
