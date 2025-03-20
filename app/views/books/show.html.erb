@@ -4,9 +4,12 @@
       <%= render 'users/user_info', user: @user %>
       <%= render 'users/user_edit', book: @book %>
     </div>
-    <!-- 本の詳細 -->
     <div class="col-md-8  offset-md-1">
+      <!-- 本の詳細 -->
       <%= render 'books_detail_table', book_show: @book_show, book_comment: @book_comment %>
+
+      <!-- コメントの表示、削除 -->
+      <%= render 'book_comments/comment', book_show: @book_show, book_comment: @book_comment %>
     </div>
   </div>
 </div>

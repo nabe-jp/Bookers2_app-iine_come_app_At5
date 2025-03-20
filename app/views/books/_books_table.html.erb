@@ -14,55 +14,23 @@
     <% @books.each do |book| %>
       <%= link_to user_path(book.user) do %>
         <tr>
-        <td>
+          <td>
             <%= image_tag book.user.get_profile_image(100,100) %>
-        </td>
-        <td>
-          <%= link_to book_path(book) do %>
-            <%= book.title %>
-          <% end %>
-        </td>
-        <td>
-          <p><%= book.body %></p>
-        </td>
-        <td>
-          <!-- 自分の投稿にはいいねボタンを表示しない -->
-          <% if book.user.id != current_user.id %>
-
-            <!-- ログインしてるユーザーがいいねを押しているか判定 -->
-            <% if book.favorited_by?(current_user) %>
-            <!-- いいねを押している -->
-              <p>
-                <%= link_to book_favorite_path(book), method: :delete do %>
-                  <i class="fa-solid fa-heart", style="color:red"></i>
-                  <%= book.favorites.count %> 
-                <% end %>
-              </p>
-
-            <!-- いいねを押していない -->
-            <% else %>
-              <!-- すでに押されている場合は色を変える -->
-              <% if book.favorites.count > 0 %>
-                <p>
-                  <%= link_to book_favorite_path(book), method: :post do %>
-                    <i class="fa-solid fa-heart" style="color:red"></i>
-                    <%= book.favorites.count %>
-                  <% end %>
-                </p>
-              <% else %>
-                <p>
-                  <%= link_to book_favorite_path(book), method: :post do %>
-                    <i class="fa-solid fa-heart"></i>
-                    <%= book.favorites.count %>
-                  <% end %>
-                </p>
-              <% end %>
+          </td>
+          <td>
+            <%= link_to book_path(book) do %>
+              <%= book.title %>
             <% end %>
-          <% end %>
-        </tb>
-        <td>
-          <p>コメント数：<%= book.book_comments.count %></p>
-        </tb>
+          </td>
+          <td>
+            <p><%= book.body %></p>
+          </td>
+          <td>
+            <%= render 'favorites/favorite', book: book%>
+          </tb>
+          <td>
+            <p>コメント数：<%= book.book_comments.count %></p>
+          </tb>
         </tr>
       <% end %>
     <% end %>
