@@ -1,0 +1,23 @@
+<h3>Users</h3>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th style="width: 20%">image</th>
+      <th style="width: 60%">name</th>
+      <th style="width: 20%" colspan="1"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% users.each do |user| %>
+      <tr>
+        <td><%= link_to user_path(user.id) do %>
+          <p><%= image_tag user.get_profile_image(100,100) %></p>
+        <% end %>
+        <td><p><%= user.name %></p>
+        <td><p><%= link_to "Show", user_path(user) %></p>
+      </tr>
+    <% end %>
+</table>
+
+<!--kaminari用-->
+<%= paginate @users %>

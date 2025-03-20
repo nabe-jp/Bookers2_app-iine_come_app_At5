@@ -1,0 +1,22 @@
+<div class="container">
+  <div class="row">
+    <div class="mx-auto col-11 col-sm-10 col-lg-8 col-xl-6">
+      <h1 class="text-center">welcome to<i class="fa-solid fa-book "></i>Bookers !!</h1>
+      <p class="text-left">
+        In<i class="fa-solid fa-book"></i>Bookers,<br>
+        you can share and exchange your opinions , inpressions , and emotions<br>
+        about various books!
+      </p>
+      <div class="btn-wrapper mx-auto col-11 col-sm-10 col-lg-8 col-xl-6">
+        <a class="btn bg-info d-flex justify-content-center text-black mb-3 text-white"  style= "width: 100%;"
+          <%= link_to new_user_session_path do %>Log in
+        </a>
+        <% end %>
+        <a class="btn bg-success d-flex justify-content-center text-white"  style= "width: 100%;"
+          <%= link_to new_user_registration_path do %>Sign up
+        </a>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,34 +1,18 @@
 <div class="container"> 
   <div class="row"> 
     <div class="col-md-3">
-      <%= render 'user_info', user: @user %>
-      <%= render 'user_edit', book: @book %>
+      <!-- ユーザー情報 -->
+      <%= render 'user_info', user: @user %>4
+
+      <!-- 新規投稿作成 -->
+      <h3>New book</h3>
+      <%= render 'layouts/message', resece: @book %>
+      <%= render 'books/book_edit_form', book: @book %>
     </div>
+
     <!-- ユーザー一覧 -->
     <div class="col-md-8  offset-md-1">
-      <h3>Users</h3>
-      <table class="table table-striped">
-      <thead>
-        <tr>
-          <th style="width: 20%">image</th>
-          <th style="width: 60%">name</th>
-          <th style="width: 20%" colspan="1"></th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @users.each do |user| %>
-          <tr>
-            <td><%= link_to user_path(user.id) do %>
-              <p><%= image_tag user.get_profile_image(100,100) %></p>
-            <% end %>
-            <td><p><%= user.name %></p>
-            <td><p><%= link_to "Show", user_path(user) %></p>
-          </tr>
-        <% end %>
-      </table>
-
-      <!--kaminari用-->
-      <%= paginate @users %>
+      <%= render 'user_index_table', users: @users %>
     </div>
   </div>
 </div>

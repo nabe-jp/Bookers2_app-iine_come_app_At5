@@ -1,9 +1,3 @@
-<!-- 新規投稿作成 -->
-<h3>New book</h3>
-
-<!-- エラーメッセージ -->
-<%= render 'layouts/message', resece: @book %>
-
 <%= form_with model:book,local:true do |f| %>
   <div class="form-group">
     <%= f.label :title %>

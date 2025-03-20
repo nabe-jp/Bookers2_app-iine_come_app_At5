@@ -3,29 +3,7 @@
     <div class="mx-auto">
       <h4>User info</h4>
       <%= render 'layouts/message', resece: @user %>
-      <%= form_with model: @user do |f| %>
-        <div class="md-4">
-        <label for="inputName">Name</label>
-        </div>
-        <div>
-        <%= f.text_field :name, autofocus: true, id:"inputName", placeholder:"名前"%>
-        </div>
-        <div class="md-4">
-        <label for="inputImage">Image</label>
-        </div>
-        <div>
-        <%= f.file_field :profile_image, placeholder: "プロフィール画像", accept: "image/*" %>
-        </div>
-        <div class="md-4" style="width: 50%">
-        <label for="inputIntroduction">Introduction</label>
-        </div>
-        <div>
-        <%= f.text_field :introduction, autofocus: true, id:"inputIntroduction", placeholder:"自己紹介文"%>
-        </div>
-        <div class="md-4">
-        <%= f.submit "Update User" %>
-        </div>
-      <% end %>
+      <%= render 'user_edit_form', user: @user %>
     </div>
   </div>
 </div>
