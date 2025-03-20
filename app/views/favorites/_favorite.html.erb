@@ -1,32 +1,12 @@
-<!-- 自分の投稿にはいいねボタンを表示しない -->
-<% if book.user.id != current_user.id %>
-
-  <!-- ログインしてるユーザーがいいねを押しているか判定 -->
-  <% if book.favorited_by?(current_user) %>
-    <!-- いいねを押している -->
-    <p>
-      <%= link_to book_favorite_path(book), method: :delete do %>
-        <i class="fa-solid fa-heart", style="color:red"></i>
-        <%= book.favorites.count %> 
-      <% end %>
-    </p>
-  <% else %>
-    <!-- いいねを押していない -->
-    <!-- すでに押されている場合は色を変える -->
-    <% if book.favorites.count > 0 %>
-      <p>
-        <%= link_to book_favorite_path(book), method: :post do %>
-          <i class="fa-solid fa-heart" style="color:red"></i>
-          <%= book.favorites.count %>
-        <% end %>
-      </p>
-    <% else %>
-      <p>
-        <%= link_to book_favorite_path(book), method: :post do %>
-          <i class="fa-solid fa-heart"></i>
-          <%= book.favorites.count %>
-        <% end %>
-      </p>
-    <% end %>
+<!-- ログインしてるユーザーがいいねを押しているか判定、押していれば赤色 -->
+<% if book.favorited_by?(current_user) %>
+  <%= link_to book_favorite_path(book), method: :delete do %>
+    <i class="fa-solid fa-heart", style="color:red"></i>
+  <%= book.favorites.count %> 
+  <% end %>
+<% else %>
+  <%= link_to book_favorite_path(book), method: :post do %>
+    <i class="fa-solid fa-heart"></i>
+    <%= book.favorites.count%>
   <% end %>
 <% end %>
