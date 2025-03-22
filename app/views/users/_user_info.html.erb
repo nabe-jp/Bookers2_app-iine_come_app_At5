@@ -1,8 +1,50 @@
 <!-- ユーザーの詳細 -->
 <h3>User info</h3>
 <%= image_tag user.get_profile_image(100,100) %>
-<h5>name  <%= user.name %></h5>
-<h5>introduction  <%= user.introduction %></h5>
-<%= link_to edit_user_path(user), class: "btn btn-outline-secondary", :style => "width: 100%;" do %>
-  <i class="fa-solid fa-user-gear"></i>
+<table class="table">
+  <tbody>
+    <tr>
+      <td>
+        <h5>name</h5>
+      </td>
+      <td>
+        <h5><%= user.name %></h5>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <h5>introduction</h5>
+      </td>
+      <td>
+        <h5><%= user.introduction %></h5>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <h5>follows</h5>
+      </td>
+      <td>
+        <%= link_to user_followings_path(user.id) do %>
+          <%= user.followings.count %>
+        <% end %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <h5>followers</h5>
+      </td>
+      <td>
+        <%= link_to user_followers_path(user.id) do %>
+           <%= user.followers.count %>
+        <% end %>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<% if user.id == current_user.id %>
+  <%= link_to edit_user_path(user), class: "btn btn-outline-secondary", :style => "width: 100%;" do %>
+    <i class="fa-solid fa-user-gear"></i>
+  <% end %>
+<% else %>
+  <%= render "relationships/relationships", user: @user %>
 <% end %>

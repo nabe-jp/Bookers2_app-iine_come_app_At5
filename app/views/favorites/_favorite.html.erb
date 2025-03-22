@@ -7,6 +7,6 @@
 <% else %>
   <%= link_to book_favorite_path(book), method: :post do %>
     <i class="fa-solid fa-heart"></i>
-    <%= book.favorites.count%>
+    <%= book.favorites.count %>
   <% end %>
 <% end %>

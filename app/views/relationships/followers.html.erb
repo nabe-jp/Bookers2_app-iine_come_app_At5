@@ -1,0 +1,6 @@
+<h3>Follower Users</h3>
+<% if @user.followers.count > 0 %>
+  <%= render 'followers_users_table', users: @users %>
+<% else %>
+  <p>ユーザーはいません</p>
+<% end %>
