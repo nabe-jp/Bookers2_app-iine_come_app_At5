@@ -11,10 +11,8 @@
     </div>
 
     <div class="col-md-8  offset-md-1">
-      <%= render 'books/books_table', books: @books %>
-
-      <!--kaminari用-->
-      <%= paginate @books %>
+      <h3>Books</h3>
+      <%= render 'books/books_table', books: @books, kaminari: @books %>
     </div>
   </div>
 </div>

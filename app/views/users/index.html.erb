@@ -12,7 +12,8 @@
 
     <!-- ユーザー一覧 -->
     <div class="col-md-8  offset-md-1">
-      <%= render 'user_index_table', users: @users %>
+      <h3>Users</h3>
+      <%= render 'user_index_table', users: @users, kaminari: @users %>
     </div>
   </div>
 </div>
